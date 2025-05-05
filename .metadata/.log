@@ -1,0 +1,75 @@
+!SESSION 2025-05-03 22:43:24.197 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-03 22:43:53.334
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-03 22:43:53.416
+!MESSAGE Log4j initialized with config file C:\Users\dm210\OneDrive\Área de Trabalho\ProjetoIntegradoSEBxLPR\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-03 22:44:00.445
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2025-05-03 22:44:01.494
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-03 22:48:58.289
+!MESSAGE Indexed 'Integrado_SEB_LPR' (19 sources, 77 headers) in 5.14 sec: 3,614 declarations; 13,094 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+!SESSION 2025-05-04 14:15:34.632 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-04 14:16:01.793
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-04 14:16:01.895
+!MESSAGE Log4j initialized with config file C:\Users\dm210\OneDrive\Área de Trabalho\ProjetoIntegradoSEBxLPR\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-04 14:16:25.328
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2025-05-04 14:16:27.059
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+!SESSION 2025-05-04 22:25:24.605 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-04 22:25:46.017
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-04 22:25:46.112
+!MESSAGE Log4j initialized with config file C:\Users\dm210\OneDrive\Área de Trabalho\ProjetoIntegradoSEBxLPR\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-04 22:25:58.984
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2025-05-04 22:26:00.013
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+!SESSION 2025-05-05 10:07:29.013 -----------------------------------------------
+eclipse.buildId=Version 1.5.1
+java.version=1.8.0_272
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-05-05 10:07:57.984
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-05-05 10:07:58.069
+!MESSAGE Log4j initialized with config file C:\Users\dm210\OneDrive\Área de Trabalho\ProjetoIntegradoSEBxLPR\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-05-05 10:08:08.913
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2025-05-05 10:08:09.938
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
