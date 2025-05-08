@@ -28,3 +28,7 @@
 2025-05-05 11:30:11,079 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
 2025-05-05 11:30:11,081 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
 2025-05-05 11:30:19,821 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] toolchainItems.length=====1
+2025-05-07 21:50:17,523 [INFO] Activator:170 - 
+
+
+2025-05-07 21:50:17,532 [INFO] Activator:171 - !SESSION log4j initialized

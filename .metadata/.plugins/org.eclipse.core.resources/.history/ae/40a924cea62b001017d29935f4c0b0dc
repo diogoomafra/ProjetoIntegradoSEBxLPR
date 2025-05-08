@@ -57,6 +57,11 @@ int finalizado = 0;
 int linhay = -1;
 int colunay = -1;
 
+//variáveis da leitura dos botões:
+int direita = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_12);
+int esquerda = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_10);
+int cima = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9);
+int baixo = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11);
 
 //carta a decidir a lógica
 int carta1V = 0;
@@ -69,12 +74,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
-
-void IniciarJogo(void);
-void GerarParesAleatorios(void);
-void CompararPares(int ValorC1, int ValorC2, int linhax, int colunax, int linhay, int colunay);
-void SelecionarCarta(int linhax, int colunax, int cartaselec);
-void NavegarCursor(void);
 
 /* USER CODE END PFP */
 
@@ -120,8 +119,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
 	  IniciarJogo();
+	  // Função de navegar cursor
+
+	  //Função de selecionar carta
+
+	  //comparar pares
+
+
 
     /* USER CODE END WHILE */
 
@@ -222,7 +227,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(ST7735_CS_GPIO_Port, ST7735_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, ST7735_DC_Pin|ST7735_RES_Pin|GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, ST7735_DC_Pin|ST7735_RES_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : ST7735_CS_Pin */
   GPIO_InitStruct.Pin = ST7735_CS_Pin;
@@ -231,17 +236,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(ST7735_CS_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : ST7735_DC_Pin ST7735_RES_Pin PB5 PB6 */
-  GPIO_InitStruct.Pin = ST7735_DC_Pin|ST7735_RES_Pin|GPIO_PIN_5|GPIO_PIN_6;
+  /*Configure GPIO pins : ST7735_DC_Pin ST7735_RES_Pin */
+  GPIO_InitStruct.Pin = ST7735_DC_Pin|ST7735_RES_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PA9 PA10 PA11 PA12 */
-  GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12;
+  /*Configure GPIO pins : btn_cima_Pin btn_esquerda_Pin btn_baixo_Pin btn_direita_Pin */
+  GPIO_InitStruct.Pin = btn_cima_Pin|btn_esquerda_Pin|btn_baixo_Pin|btn_direita_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
@@ -249,123 +254,103 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void IniciarJogo(void){
 
-int selecaoD = 0;//testar
-
-//to pensando que aqui vai dar um retorno
-
-	if (selecaoD == 0){
-
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
-		HAL_Delay(1000);
+	if (direita == 1){
 
 		GerarParesAleatorios();
 
+	}else if(esquerda == 1){
+		//mostrar o recorde
+		if(esquerda == 1)
+		{
+
+		}
+
 	}
 
-
 }
-void GerarParesAleatorios(void){
+int GerarParesAleatorios(){
 	//gera pares e chama navegar cursor
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 0);
+
 	NavegarCursor();
-
 }
-
-void NavegarCursor(void){
-
-	int direita = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_12);
-	int esquerda = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_10);
-	int cima = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9);
-	int baixo = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11);
-
-	HAL_Delay(1000);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, 1);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);
-
-	while(carta2V == 0){
-
-	  if (direita == 0 && coluna < 2){
-
-		  HAL_Delay(1000);
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, 0);
-
-		  coluna++;
-
-	  } else if (esquerda == 0 && coluna > 1){
-
-			  coluna =- 1;
-
-	  }/*else if (cima == 1 && linha > 1){
-
-			  linha =-1;
-
-	  */else if (baixo == 0 && linha < 2){
-
-			  linha ++;
-	  }
-
-	  if (cima == 0 && carta1V == 0 && carta2V == 0){
-
-		  //Aqui chama a função de selecionar as cartas passando a variável de linha e coluna
-
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, 1);
-		  HAL_Delay(1000);
-
-		  SelecionarCarta(linha, coluna, 1); //primeira carta virada vai receber o valor da posição que a pessoa parou na matriz
+int CompararPares(int ValorC1 = 0, int ValorC2 = 0, int linhax, int colunax, int linhay, int colunay){
 
 
-	  } else if (matriz[linha][coluna] != 9 && cima == 0  && carta2V == 0 && carta1V != 0){
-
-		   SelecionarCarta(linha, coluna, 2);
-
-
-
-	  }
-
-	}
-}
-void CompararPares(int ValorC1, int ValorC2, int linhax, int colunax, int linhay, int colunay){
 // receber o valor da posição e guardar numa variável global, quando preencher a segunda carta ele compara
 	  if ( (ValorC1 != 0 && ValorC2 != 0) && (ValorC1 == ValorC2) ){
-
+//
 		  matriz[linhax][colunax] = 9;
 		  matriz[linhay][colunay] = 9;
-
 		  finalizado = 1;
 
-
 	  }else{
+
+
+
 
 		  NavegarCursor();
 
 	  }
+
+
+
+
 }
 
-void SelecionarCarta(int linhax, int colunax, int cartaselec){
-
+int SelecionarCarta(int linhax, int colunax, int cartaselec){
 	if (cartaselec == 1){
 
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, 0);
-		HAL_Delay(1000);
 		linhay = linhax;
 		colunay = colunax;
 
+		return matriz [linhax][colunax];
 
-		carta1V = matriz [linhay][colunay];
-
-		NavegarCursor();
-
-	}else if (cartaselec == 2){//foi selecionado só a primeira carta
+	}else{//foi selecionado só a primeira carta
 
 		carta2V = matriz [linhax][colunax];
 
 		CompararPares(carta1V, carta2V, linhax, colunax, linhay, colunay);
 
+	}
 
+
+
+}
+void NavegarCursor(void){
+
+	while(carta2V == 0){
+	  if (direita == 1 && coluna < 1){
+
+			  coluna++;
+
+	  } else if (esquerda == 1 && coluna > 0){
+
+			  coluna =- 1;
+
+	  }else if (cima == 1 && linha > 0){
+
+			  linha =-1;
+
+	  }else if (baixo == 1 && linha < 1){
+
+			  linha ++;
+	  }
+
+	  if (direita == 1 && esquerda == 1 && carta1V == 0 && carta2V == 0){
+
+		  //Aqui chama a função de selecionar as cartas passando a variável de linha e coluna
+
+		  carta1V = SelecionarCarta(linha, coluna, 1); //primeira carta virada vai receber o valor da posição que a pessoa parou na matriz
+
+
+	  } else if (matriz[linha][coluna] != 9 && direita == 1 && esquerda == 1  && carta2V == 0 && carta1V != 0){
+
+		   SelecionarCarta(linha, coluna, 2);
+
+	  }
 	}
 
 }
-
 /* USER CODE END 4 */
 
 /**
@@ -400,4 +385,4 @@ void assert_failed(uint8_t *file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/************************ (C) COPYRIGHT STMicroelectronics ****END OF FILE*/
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

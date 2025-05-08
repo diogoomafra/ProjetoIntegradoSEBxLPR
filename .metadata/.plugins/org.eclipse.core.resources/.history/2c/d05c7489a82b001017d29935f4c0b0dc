@@ -73,7 +73,7 @@ static void MX_SPI1_Init(void);
 void IniciarJogo(void);
 void GerarParesAleatorios(void);
 void CompararPares(int ValorC1, int ValorC2, int linhax, int colunax, int linhay, int colunay);
-void SelecionarCarta(int linhax, int colunax, int cartaselec);
+int SelecionarCarta(int linhax, int colunax, int cartaselec);
 void NavegarCursor(void);
 
 /* USER CODE END PFP */
@@ -316,7 +316,7 @@ void NavegarCursor(void){
 
 	  } else if (matriz[linha][coluna] != 9 && cima == 0  && carta2V == 0 && carta1V != 0){
 
-		   SelecionarCarta(linha, coluna, 2);
+		   carta2V = SelecionarCarta(linha, coluna, 2);
 
 
 

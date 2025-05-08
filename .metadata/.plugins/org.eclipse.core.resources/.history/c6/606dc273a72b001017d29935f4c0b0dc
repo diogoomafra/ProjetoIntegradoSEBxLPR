@@ -73,7 +73,7 @@ static void MX_SPI1_Init(void);
 void IniciarJogo(void);
 void GerarParesAleatorios(void);
 void CompararPares(int ValorC1, int ValorC2, int linhax, int colunax, int linhay, int colunay);
-void SelecionarCarta(int linhax, int colunax, int cartaselec);
+int SelecionarCarta(int linhax, int colunax, int cartaselec);
 void NavegarCursor(void);
 
 /* USER CODE END PFP */
@@ -249,9 +249,8 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void IniciarJogo(void){
 
-int selecaoD = 0;//testar
+int selecaoD = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_12);
 
-//to pensando que aqui vai dar um retorno
 
 	if (selecaoD == 0){
 
@@ -311,13 +310,12 @@ void NavegarCursor(void){
 		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, 1);
 		  HAL_Delay(1000);
 
-		  SelecionarCarta(linha, coluna, 1); //primeira carta virada vai receber o valor da posição que a pessoa parou na matriz
+		  carta1V = SelecionarCarta(linha, coluna, 1); //primeira carta virada vai receber o valor da posição que a pessoa parou na matriz
 
 
 	  } else if (matriz[linha][coluna] != 9 && cima == 0  && carta2V == 0 && carta1V != 0){
 
 		   SelecionarCarta(linha, coluna, 2);
-
 
 
 	  }
@@ -330,7 +328,6 @@ void CompararPares(int ValorC1, int ValorC2, int linhax, int colunax, int linhay
 
 		  matriz[linhax][colunax] = 9;
 		  matriz[linhay][colunay] = 9;
-
 		  finalizado = 1;
 
 
@@ -341,7 +338,7 @@ void CompararPares(int ValorC1, int ValorC2, int linhax, int colunax, int linhay
 	  }
 }
 
-void SelecionarCarta(int linhax, int colunax, int cartaselec){
+int SelecionarCarta(int linhax, int colunax, int cartaselec){
 
 	if (cartaselec == 1){
 
@@ -351,16 +348,14 @@ void SelecionarCarta(int linhax, int colunax, int cartaselec){
 		colunay = colunax;
 
 
-		carta1V = matriz [linhay][colunay];
+		return matriz [linhax][colunax];
 
-		NavegarCursor();
 
-	}else if (cartaselec == 2){//foi selecionado só a primeira carta
+	}else{//foi selecionado só a primeira carta
 
-		carta2V = matriz [linhax][colunax];
+		return matriz [linhax][colunax];
 
 		CompararPares(carta1V, carta2V, linhax, colunax, linhay, colunay);
-
 
 	}
 

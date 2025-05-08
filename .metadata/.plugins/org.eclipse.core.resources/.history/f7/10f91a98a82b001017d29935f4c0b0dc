@@ -316,7 +316,7 @@ void NavegarCursor(void){
 
 	  } else if (matriz[linha][coluna] != 9 && cima == 0  && carta2V == 0 && carta1V != 0){
 
-		   SelecionarCarta(linha, coluna, 2);
+		   carta2V = SelecionarCarta(linha, coluna, 2);
 
 
 
